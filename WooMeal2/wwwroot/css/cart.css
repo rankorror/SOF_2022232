@@ -1,0 +1,5 @@
+﻿.bi.bi-cart:before {
+    content: "\f07a";
+    font-family: "FontAwesome";
+    font-size: 16px;
+}

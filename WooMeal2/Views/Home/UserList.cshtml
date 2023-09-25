@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WooMeal2.Models.AppUser>
+
+<div class="row">
+    @foreach (var user in Model)
+    {
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    @*<img src="@user.PhotoUrl" class="card-img-top" alt="...">*@
+                    <div class="card-body">
+                        <h5 class="card-title">@user.FirstName @user.LastName</h5>
+                        <p class="card-text">@user.Email</p>
+                        Restaurant token mennyiség: @user.OwnerToken db.
+                        @if (user.Type == UserType.Restaurant && user.Restaurant == null && user.OwnerToken == 0)
+                        {
+                            <a href="GrantRestaurant?uid=@user.Id">Adok neki tokent!</a>
+                        }
+                    </div>
+                </div>
+            </div>
+    }
+</div>

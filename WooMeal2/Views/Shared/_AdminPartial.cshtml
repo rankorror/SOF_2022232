@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if(UserManager.GetUserAsync != null){
+
+    
+    @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Admin"))
+    {
+    <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="UserList">felhasználók listája</a>
+    </li>
+    }
+    }
+}

@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<WooMeal2.Models.Meal>
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/meal.css">
+</head>
+
+<div class="row">
+    
+        <div class="container">
+            <div class="left-column">
+                <!-- Left column content goes here -->
+            </div>
+            <div class="main-content">
+            <div class="row row-cols-1 row-cols-md-2 g-4 w-50 p-45 mx-auto">
+                @foreach (var meal in Model)
+                {
+                    <div class="col">
+                    <img height="150" width="180" src=@meal.PhotoUrl class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@meal.Name</h5>
+                            <p class="card-text">@meal.Description</p>
+                        <p class="card-text"><small class="text-muted">Ár: @meal.Price</small></p>
+                        </div>
+                        @if (SignInManager.IsSignedIn(User))
+                    {
+                        <div class="addToCart text-right">
+                            <p class="button ">
+                                <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-mealId="@meal.Id">
+                                    Bevásárlókocsiba vele!
+                                </a>
+                            </p>
+                        </div>
+                    }
+                    </div>
+                }
+            </div>
+            </div>
+            <div class="right-column">
+                  
+            </div>
+        </div>
+    
+</div>

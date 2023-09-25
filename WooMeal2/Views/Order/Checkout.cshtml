@@ -1,0 +1,20 @@
+﻿@using WooMeal2.ViewModel;
+@model OrderViewModel
+
+<div class="row orderForm ">
+    <h3>Biztosan megrendeled a választott dolgokat?</h3>
+
+    <h1>Végösszeg: @ViewData["Vegosszeg"]</h1>
+
+    <form asp-action="CheckoutPost" method="post" class="form-horizontal" role="form">
+       <div class="form-group">
+            <div class="btn-group col-md-offset-2 col-md-8">
+                <input class="btn btn-success" type="submit" value="Rendelés véglegesítése" />                
+            </div>
+        </div>
+        <div class="form-group">
+            <a asp-action="Index" asp-controller="ShoppingCart" class="btn btn-danger">Mégsem</a>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,47 @@
+﻿@using WooMeal2.ViewModel;
+@model ShoppingCartViewModel
+
+<div class="row checkoutForm">
+    <h2>Bevásárlókocsi</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Választott mennyiség</th>
+                <th>Rendelt tétel</th>
+                <th class="text-right">Ár</th>
+                <th class="text-right">Összesen</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td class="text-center">@line.Amount</td>
+                    <td class="text-left">@line.Meal.Name</td>
+                    <td class="text-right">@line.Meal.Price.ToString("c")</td>
+                    <td class="text-right">
+                        @((line.Amount * line.Meal.Price).ToString("c"))
+                    </td>
+                    <div class="btn-group ">
+                    <td class="text-center"><a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-mealId="@line.Meal.Id">Eltávolítom</a></td>
+                    </div>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Fizetendő összeg (szállítási költséggel):</td>
+                <td class="text-right">
+                    @Model.ShoppingCartTotal.ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-right">
+        <div class="btn-group ">
+            <a class="btn btn-success" asp-controller="Order" asp-action="Checkout" asp-route-vegosszeg="@Model.ShoppingCartTotal">Megrendelem</a>
+        </div>
+    </div>
+</div>

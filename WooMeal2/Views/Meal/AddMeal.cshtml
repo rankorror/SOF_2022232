@@ -1,0 +1,46 @@
+﻿@model WooMeal2.Models.Meal
+
+<h4>Meal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddMeal" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name of the meal</label>
+                <input asp-for="Name" class="form-control" required maxlength="200"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Price</label>
+                <input asp-for="Price" class="form-control" required min="500" max="100000" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description</label>
+                <input asp-for="Description" class="form-control" maxlength="5000" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinutesToPrepare" class="control-label">Minutes To Prepare</label>
+                <input asp-for="MinutesToPrepare" class="form-control" required max="180"/>
+                <span asp-validation-for="MinutesToPrepare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Picture</label>
+                <input type="file" name="pictureData" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kész!" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vissza a listához!</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

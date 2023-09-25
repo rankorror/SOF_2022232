@@ -1,0 +1,31 @@
+﻿.container {
+    display: flex;
+}
+
+.left-column {
+    width: 1000px; /* adjust as needed */
+}
+
+.main-content {
+    flex: 1; /* takes up remaining space */
+}
+
+.right-column {
+    width: 1000px; /* adjust as needed */
+}
+
+table {
+    overflow: hidden;
+    border-collapse: collapse;
+    position:center;
+}
+
+    table td {
+        padding: 100px;
+        border: 100px solid #000;
+    }
+
+.tbody::before {
+    content: "";
+    margin: 100px;
+}

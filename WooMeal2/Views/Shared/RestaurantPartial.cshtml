@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (UserManager.GetUserAsync != null)
+    {
+        @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "RestaurantOwner"))
+        {
+            var currentUser = await UserManager.GetUserAsync(User);
+            if (currentUser.Restaurant != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Meal" asp-action="AddMeal">Új étlapelem hozzáadása @currentUser.Restaurant.Name étteremhez!</a>
+                </li>
+            }
+            if (currentUser.OwnerToken > 0)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="RestaurantMaker">Új étterem hozzáadása!</a>
+                </li>
+            }
+
+        }
+    }
+}
